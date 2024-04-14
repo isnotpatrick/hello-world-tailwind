@@ -26,7 +26,7 @@ npx tailwindcss init -p
 
 This command installs Tailwind CSS, PostCSS, Autoprefixer, and creates a 'tailwind.config.js' and 'postcss.config.js' files in your project.
 
-For future details regarding Tailwind CSS installation, visit https://tailwindcss.com/docs/installation
+For additional details regarding Tailwind CSS installation, visit https://tailwindcss.com/docs/installation
 
 ### 3. Configure Tailwind to Remove Unused Styles in Production
 
