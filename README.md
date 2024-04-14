@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Hello World
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<sub>*last updated: 2024-04-13*</sub>
+<br>
+<sub>*comments: React.js | Tailwind CSS*</sub>
 
-## Available Scripts
+![Preview](./hello-world-tailwind.jpg)
 
-In the project directory, you can run:
+### 1. Create a New React Project
 
-### `npm start`
+Create a new React project by running:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```sh
+npx create-react-app hello-world-tailwind
+cd hello-world-tailwind
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. Install Tailwind CSS
 
-### `npm test`
+Install Tailwind CSS and its peer dependencies by running:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
 
-### `npm run build`
+This command installs Tailwind CSS, PostCSS, Autoprefixer, and creates a 'tailwind.config.js' and 'postcss.config.js' files in your project.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For future details regarding Tailwind CSS installation, visit https://tailwindcss.com/docs/installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. Configure Tailwind to Remove Unused Styles in Production
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Open 'tailwind.config.js' and ensure it is configured to purge unused styles in production by adding the content array. This step is usually set up by default with the -p flag in the init command, but it's good to verify:
 
-### `npm run eject`
+```js
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 4. Include Tailwind in Your CSS
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open the 'src/index.css' file, and replace its content with the following Tailwind directives:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 5. Use Tailwind CSS in the App Component
 
-## Learn More
+Replace the content of 'src/App.js' with the following code to create a simple "Hello, World!" application styled with Tailwind CSS:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```jsx
+import React from 'react';
+import './index.css';
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+function App() {
+  return (
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+      <header className="text-center">
+        <h1 className="text-4xl font-bold text-blue-500 md:text-5xl lg:text-6xl">
+          Hello, World!
+        </h1>
+        <p className="text-base text-gray-700 mt-2 md:text-lg">
+          Welcome to your first Tailwind CSS project.
+        </p>
+      </header>
+      <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+        Click me!
+      </button>
+    </div>
+  );
+}
 
-### Code Splitting
+export default App;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Explanation of Tailwind CSS Classes Used
 
-### Analyzing the Bundle Size
+1. **Responsive Typography**: The 'text-4xl', 'md:text-5xl', 'lg:text-6xl' classes make the font size responsive. The text size increases based on the width of the device (medium and large screens).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. **Colors and Backgrounds**: 'bg-gray-100', 'text-blue-500', and 'hover:bg-blue-700' demonstrate how to apply background and text colors. The hover: prefix shows how to change the background color on hover.
 
-### Making a Progressive Web App
+3. **Spacing**: 'mt-2' and 'mt-4' are margin-top utilities that add spacing above elements. 'py-2' and 'px-4' are padding utilities that add padding inside elements vertically and horizontally.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. **Rounded Corners**: 'rounded-full' applies fully rounded corners to elements, in this case, making the button circular if the content allows.
 
-### Advanced Configuration
+5. **Hover Effects**: The 'hover:-translate-y-1 hover:scale-110' combined with transition 'duration-300 ease-in-out' demonstrates a smooth hover effect where the button slightly moves up and enlarges.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+6. **Flexbox Layout**: 'flex', 'flex-col', 'items-center', and 'justify-center' are used to center content vertically and horizontally on the page.
 
-### Deployment
+### 6. Run Your Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Start your application by running:
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```sh
+npm start
+```
